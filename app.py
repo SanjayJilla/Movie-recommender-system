@@ -12,7 +12,6 @@ import pickle
 import requests
 load_dotenv()
 api_key = os.getenv('TMDB_API_KEY')
-st.write(api_key)
 def fetch_poster(movie_id):
     try:
         url =  f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
