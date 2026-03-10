@@ -19,16 +19,16 @@ import requests
 load_dotenv()
 api_key = st.secrets["TMDB_API_KEY"]
 def fetch_poster(movie_id):
-    try:
-        url =  f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={api_key}&language=en-US"
-        response = requests.get(url)
-        response.raise_for_status()
-        data = response.json()
-        poster_path = data.get('poster_path')
-        if poster_path:
-            return "https://image.tmdb.org/t/p/w500/" + poster_path
-        else:
-            return "https://via.placeholder.com/500x750?text=No+Poster"
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={st.secrets['TMDB_API_KEY']}&language=en-US"
+    data = requests.get(url).json()
+
+    poster_path = data.get('poster_path')
+
+    if poster_path:
+        return "https://image.tmdb.org/t/p/w500/" + poster_path
+    else:
+        return "https://via.placeholder.com/500x750?text=No+Poster"
+
         
         
     except Exception as e:
