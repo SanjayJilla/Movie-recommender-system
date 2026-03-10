@@ -1,5 +1,5 @@
 
-
+import os
 import streamlit as st
 import pandas as pd
 st.title("🎬 Movie Recommendation System")
@@ -9,7 +9,7 @@ if not os.path.exists('similarity.pkl'):
     url="https://drive.google.com/file/d/1jYO7rw49NHfWrYQHqIN1_mJz_YduAK6i/view"
     gdown.download(url,'similarity.pkl',quiet=False)
 similarity = pickle.load(open('similarity.pkl', 'rb'))
-import os
+
 from dotenv import load_dotenv
 import pickle 
 import requests
