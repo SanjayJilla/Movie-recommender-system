@@ -13,24 +13,18 @@ if not os.path.exists('similarity.pkl'):
     gdown.download(url,'similarity.pkl',quiet=False)
 similarity = pickle.load(open('similarity.pkl', 'rb'))
 
-from dotenv import load_dotenv
-import pickle 
-import requests
-load_dotenv()
 api_key = st.secrets["TMDB_API_KEY"]
 def fetch_poster(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={st.secrets['TMDB_API_KEY']}&language=en-US"
-    data = requests.get(url).json()
-
-    poster_path = data.get('poster_path')
-
-    if poster_path:
-        return "https://image.tmdb.org/t/p/w500/" + poster_path
-    else:
-        return "https://via.placeholder.com/500x750?text=No+Poster"
-
-        
-        
+    try:
+        url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={st.secrets['TMDB_API_KEY']}&language=en-US"
+        data = requests.get(url).json()
+    
+        poster_path = data.get('poster_path')
+    
+        if poster_path:
+            return "https://image.tmdb.org/t/p/w500/" + poster_path
+        else:
+            return "https://via.placeholder.com/500x750?text=No+Poster"
     except Exception as e:
         st.warning(f"Poster not found for movie ID {movie_id}. Using placeholder.")
         return "https://via.placeholder.com/500x750?text=Poster+Unavailable"
