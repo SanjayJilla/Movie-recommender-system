@@ -5,7 +5,10 @@ import pandas as pd
 st.title("🎬 Movie Recommendation System")
 st.write("Welcome! Select a movie from the dropdown to get recommendations.")
 #update the frontend to display posters along with movie names
-
+if not os.path.exists('similarity.pkl'):
+    url="https://drive.google.com/file/d/1jYO7rw49NHfWrYQHqIN1_mJz_YduAK6i/view"
+    gdown.download(url,'similarity.pkl',quiet=False)
+similarity = pickle.load(open('similarity.pkl', 'rb'))
 import os
 from dotenv import load_dotenv
 import pickle 
