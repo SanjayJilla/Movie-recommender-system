@@ -1,5 +1,7 @@
 import gdown
 import os
+import requests
+import pickle
 import streamlit as st
 import pandas as pd
 st.title("🎬 Movie Recommendation System")
